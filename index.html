@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+
+<div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
+    <h2 class="text-2xl font-bold text-center mb-4">Invoice Generator</h2>
+
+    <!-- Customer Selection -->
+    <label class="block font-semibold mb-1">Select Customer:</label>
+    <select id="customer" onchange="fillCustomerDetails()" class="w-full p-2 border rounded mb-4">
+        <option value="">-- Select Customer --</option>
+        <option value="1">Alam Ritz</option>
+        <option value="2">Safran</option>
+    </select>
+
+    <!-- Customer Details -->
+    <div id="customerDetails" class="bg-gray-100 p-3 rounded mb-4">
+        <p><strong>Address:</strong> <span id="address"></span></p>
+        <p><strong>Phone:</strong> <span id="phone"></span></p>
+    </div>
+
+    <!-- Invoice Items Table -->
+    <h3 class="text-lg font-semibold mb-2">Invoice Items</h3>
+    <table class="w-full border-collapse border border-gray-300 text-sm">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="border p-2">Item</th>
+                <th class="border p-2">Qty</th>
+                <th class="border p-2">Price (RM)</th>
+                <th class="border p-2">Total (RM)</th>
+                <th class="border p-2">Action</th>
+            </tr>
+        </thead>
+        <tbody id="invoiceTable"></tbody>
+    </table>
+
+    <!-- Buttons -->
+    <button onclick="addItem()" class="bg-blue-500 text-white px-4 py-2 mt-4 rounded w-full">Add Item</button>
+    <h3 class="text-lg font-semibold mt-4">Total: RM <span id="grandTotal">0.00</span></h3>
+    <button onclick="generatePDF()" class="bg-green-500 text-white px-4 py-2 mt-2 rounded w-full">Save as PDF</button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
